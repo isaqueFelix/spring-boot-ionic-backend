@@ -20,6 +20,7 @@ import br.com.isaquefelix.cursomc.domain.PagamentoComCartao;
 import br.com.isaquefelix.cursomc.domain.Pedido;
 import br.com.isaquefelix.cursomc.domain.Produto;
 import br.com.isaquefelix.cursomc.domain.enums.EstadoPagamento;
+import br.com.isaquefelix.cursomc.domain.enums.Perfil;
 import br.com.isaquefelix.cursomc.domain.enums.TipoCliente;
 import br.com.isaquefelix.cursomc.repositories.CategoriaRepository;
 import br.com.isaquefelix.cursomc.repositories.CidadeRepository;
@@ -93,6 +94,7 @@ public class DBService {
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
 		Cliente cli1 = new Cliente(null, "Maria Silva", "isaque.felix.ti@gmail.com", "01013141422", TipoCliente.PESSOAFISICA, pe.encode("123")) ;
+		Cliente cli2 = new Cliente(null, "Ana Costa", "isaque.felix@gmail.com", "40318134810", TipoCliente.PESSOAFISICA, pe.encode("123")) ;
 		
 		Endereco e1 = new Endereco(null, "Rua flores", "300", "Apto 303", "Jardim", "38324992", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 300", "Centro", "33242992", cli1, c2);	
@@ -134,6 +136,9 @@ public class DBService {
 		
 		cli1.getTelefones().addAll(Arrays.asList("11952233445", "1123445566"));
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.addPerfil(Perfil.ADMIN);
+		cli2.getTelefones().addAll(Arrays.asList("11952233445", "1123445566"));
+		cli2.getEnderecos().addAll(Arrays.asList(e2));
 		
 		ped1.setPagamento(pagto1);
 		ped2.setPagamento(pagto2);
@@ -151,7 +156,7 @@ public class DBService {
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
-		clienteRepository.saveAll(Arrays.asList(cli1));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
