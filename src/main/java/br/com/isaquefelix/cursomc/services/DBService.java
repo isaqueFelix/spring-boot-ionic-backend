@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.isaquefelix.cursomc.domain.Categoria;
@@ -33,6 +34,9 @@ import br.com.isaquefelix.cursomc.repositories.ProdutoRepository;
 @Service
 public class DBService {
 		
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
@@ -88,7 +92,7 @@ public class DBService {
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "isaque.felix.ti@gmail.com", "01013141422", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria Silva", "isaque.felix.ti@gmail.com", "01013141422", TipoCliente.PESSOAFISICA, pe.encode("123")) ;
 		
 		Endereco e1 = new Endereco(null, "Rua flores", "300", "Apto 303", "Jardim", "38324992", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 300", "Centro", "33242992", cli1, c2);	
