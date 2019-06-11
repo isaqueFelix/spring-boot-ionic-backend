@@ -70,7 +70,7 @@ public class Cliente implements Serializable {
 		this.senha = senha;
 		addPerfil(Perfil.CLIENTE);
 	}
-	
+	 
 	public Integer getId() {
 		return id;
 	}
